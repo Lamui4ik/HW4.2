@@ -40,24 +40,4 @@ public class GameProgress implements Serializable {
             e.printStackTrace();
         }
     }
-
-    public void zipFiles(String path, String[] list) throws IOException {
-        FileOutputStream fos = new FileOutputStream(path);
-        ZipOutputStream zipOut = new ZipOutputStream(fos);
-        for (int i=0;i<3;i++) {
-            File fileToZip = new File(list[i]);
-            FileInputStream fis = new FileInputStream(fileToZip);
-            ZipEntry zipEntry = new ZipEntry(fileToZip.getName());
-            zipOut.putNextEntry(zipEntry);
-
-            byte[] bytes = new byte[1024];
-            int length;
-            while((length = fis.read(bytes)) >= 0) {
-                zipOut.write(bytes, 0, length);
-            }
-            fis.close();
-        }
-        zipOut.close();
-        fos.close();
-    }
 }
